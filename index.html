@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাংলাদেশ ডিজিটাল তথ্য বাতায়ন | Bangladesh Digital Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #006a4e;
+            --primary-dark: #004d38;
+            --accent: #f42a41;
+            --bg-light: #f4f7f6;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .top-bar-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            padding: 18px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .emblem {
+            width: 52px;
+            height: 52px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.3rem;
+            border: 3px solid var(--accent);
+        }
+
+        .site-title h1 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .site-title p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .search-box {
+            display: flex;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            padding: 10px 14px;
+            width: 100%;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0 18px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+        }
+
+        .nav-links li a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            background: var(--primary-dark);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        /* Notice Ticker */
+        .notice-bar {
+            background: #fff8f8;
+            border-bottom: 1px solid #fee2e2;
+            padding: 10px 0;
+        }
+
+        .notice-inner {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notice-badge {
+            background: var(--accent);
+            color: var(--white);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Hero Slider */
+        .hero {
+            margin: 24px 0;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, var(--primary) 0%, #003d2c 100%);
+            color: var(--white);
+            border-radius: 14px;
+            padding: 45px 40px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card::after {
+            content: '';
+            position: absolute;
+            right: -60px;
+            top: -60px;
+            width: 260px;
+            height: 260px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+        }
+
+        .hero-content h2 {
+            font-size: 2.1rem;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .hero-content p {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            margin-bottom: 22px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary);
+            padding: 10px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.2s;
+        }
+
+        .hero-btn:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Main Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 850px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .service-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Application Form Box */
+        .form-box {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Sidebar */
+        .sidebar-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .notice-list {
+            list-style: none;
+        }
+
+        .notice-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.92rem;
+        }
+
+        .notice-list li:last-child {
+            border-bottom: none;
+        }
+
+        .notice-date {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .helpline-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .helpline-item {
+            background: var(--bg-light);
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid var(--accent);
+        }
+
+        .helpline-item strong {
+            display: block;
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .helpline-item span {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 36px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.9rem;
+        }
+
+        #toast {
+            visibility: hidden;
+            min-width: 260px;
+            background-color: var(--primary);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 14px;
+            position: fixed;
+            z-index: 999;
+            right: 20px;
+            bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        #toast.show {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <span data-bn="বাংলাদেশ জাতীয় তথ্য বাতায়ন - নাগরিক সেবায় অঙ্গীকারবদ্ধ" data-en="Bangladesh National Portal - Committed to Citizen Services">বাংলাদেশ জাতীয় তথ্য বাতায়ন - নাগরিক সেবায় অঙ্গীকারবদ্ধ</span>
+            <button class="lang-btn" onclick="toggleLanguage()" id="langToggle">English</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo-area">
+                <div class="emblem">BD</div>
+                <div class="site-title">
+                    <h1 data-bn="বাংলাদেশ ডিজিটাল তথ্য বাতায়ন" data-en="Bangladesh Digital Information Portal">বাংলাদেশ ডিজিটাল তথ্য বাতায়ন</h1>
+                    <p data-bn="গণপ্রজাতন্ত্রী বাংলাদেশ সরকার (ডেমো পোর্টাল)" data-en="Government of the People's Republic of Bangladesh (Demo)">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার (ডেমো পোর্টাল)</p>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" onkeyup="filterServices()" placeholder="সেবা খুঁজুন (যেমন: জন্ম নিবন্ধন, পাসপোর্ট)...">
+                <button onclick="filterServices()" data-bn="খুঁজুন" data-en="Search">খুঁজুন</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#" class="active" data-bn="প্রচ্ছদ" data-en="Home">প্রচ্ছদ</a></li>
+                <li><a href="#services" data-bn="ই-সেবাসমূহ" data-en="E-Services">ই-সেবাসমূহ</a></li>
+                <li><a href="#apply" data-bn="অনলাইন আবেদন" data-en="Online Apply">অনলাইন আবেদন</a></li>
+                <li><a href="#notices" data-bn="নোটিশ বোর্ড" data-en="Notice Board">নোটিশ বোর্ড</a></li>
+                <li><a href="#helpline" data-bn="জরুরি কল সেন্টার" data-en="Helpline">জরুরি কল সেন্টার</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Notice Ticker -->
+    <div class="notice-bar">
+        <div class="container notice-inner">
+            <span class="notice-badge" data-bn="জরুরি ঘোষণা" data-en="Notice">জরুরি ঘোষণা</span>
+            <marquee behavior="scroll" direction="left">
+                স্মার্ট বাংলাদেশ বিনির্মাণে সকল নাগরিক সেবা এখন হাতের মুঠোয়। অনলাইনে জন্ম নিবন্ধন, পাসপোর্ট ও ভূমি সেবার আবেদন করুন ঘরে বসেই।
+            </marquee>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-card">
+                <div class="hero-content">
+                    <h2 data-bn="এক ঠিকানায় সকল সরকারি ও নাগরিক ডিজিটাল সেবা" data-en="All Government & Citizen Digital Services in One Place">এক ঠিকানায় সকল সরকারি ও নাগরিক ডিজিটাল সেবা</h2>
+                    <p data-bn="সময় ও খরচ বাঁচিয়ে ঘরে বসেই প্রয়োজনীয় সনদ, আবেদন এবং তথ্য সেবা গ্রহণ করুন।" data-en="Save time and cost by accessing essential certificates, applications, and information services from home.">সময় ও খরচ বাঁচিয়ে ঘরে বসেই প্রয়োজনীয় সনদ, আবেদন এবং তথ্য সেবা গ্রহণ করুন।</p>
+                    <a href="#apply" class="hero-btn" data-bn="এখনই আবেদন করুন →" data-en="Apply Now →">এখনই আবেদন করুন →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <div>
+                <!-- Services -->
+                <h2 class="section-title" id="services">
+                    <span data-bn="জনপ্রিয় ই-সেবাসমূহ" data-en="Popular E-Services">জনপ্রিয় ই-সেবাসমূহ</span>
+                </h2>
+                <div class="services-grid" id="servicesContainer">
+                    <div class="service-card">
+                        <div class="service-icon">🪪</div>
+                        <h3 data-bn="জাতীয় পরিচয়পত্র সেবা" data-en="NID Card Services">জাতীয় পরিচয়পত্র সেবা</h3>
+                        <p data-bn="নতুন ভোটার নিবন্ধন, তথ্য সংশোধন ও স্মার্ট কার্ড স্ট্যাটাস যাচাই।" data-en="New voter registration, info correction & smart card status.">নতুন ভোটার নিবন্ধন, তথ্য সংশোধন ও স্মার্ট কার্ড স্ট্যাটাস যাচাই।</p>
+                        <a href="#apply" class="service-link">আবেদন করুন →</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👶</div>
+                        <h3 data-bn="জন্ম ও মৃত্যু নিবন্ধন" data-en="Birth & Death Registration">জন্ম ও মৃত্যু নিবন্ধন</h3>
+                        <p data-bn="অনলাইনে নতুন জন্ম নিবন্ধন আবেদন ও সনদ যাচাই করুন।" data-en="Apply for new birth registration and verify certificates online.">অনলাইনে নতুন জন্ম নিবন্ধন আবেদন ও সনদ যাচাই করুন।</p>
+                        <a href="#apply" class="service-link">আবেদন করুন →</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🛂</div>
+                        <h3 data-bn="ই-পাসপোর্ট পোর্টাল" data-en="E-Passport Portal">ই-পাসপোর্ট পোর্টাল</h3>
+                        <p data-bn="নতুন ই-পাসপোর্ট আবেদন, ফি প্রদান ও ডেলিভারি স্ট্যাটাস।" data-en="New e-passport application, fee payment & delivery status.">নতুন ই-পাসপোর্ট আবেদন, ফি প্রদান ও ডেলিভারি স্ট্যাটাস।</p>
+                        <a href="#apply" class="service-link">আবেদন করুন →</a>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🏞️</div>
+                        <h3 data-bn="ডিজিটাল ভূমি সেবা" data-en="Digital Land Services">ডিজিটাল ভূমি সেবা</h3>
+                        <p data-bn="ই-নামজারি, খতিয়ান অনুসন্ধান ও অনলাইন ভূমি উন্নয়ন কর।" data-en="E-mutation, Khatian search & online land development tax.">ই-নামজারি, খতিয়ান অনুসন্ধান ও অনলাইন ভূমি উন্নয়ন কর।</p>
+                        <a href="#apply" class="service-link">আবেদন করুন →</a>
+                    </div>
+                </div>
+
+                <!-- Online Application Form -->
+                <h2 class="section-title" id="apply">
+                    <span data-bn="নাগরিক সেবা অনলাইন আবেদন ফরম" data-en="Citizen Service Online Application">নাগরিক সেবা অনলাইন আবেদন ফরম</span>
+                </h2>
+                <div class="form-box">
+                    <form onsubmit="submitApplication(event)">
+                        <div class="form-group">
+                            <label data-bn="আবেদনকারীর পূর্ণ নাম" data-en="Applicant Full Name">আবেদনকারীর পূর্ণ নাম</label>
+                            <input type="text" id="appName" required placeholder="আপনার নাম লিখুন">
+                        </div>
+                        <div class="form-group">
+                            <label data-bn="মোবাইল নম্বর" data-en="Mobile Number">মোবাইল নম্বর</label>
+                            <input type="tel" id="appPhone" required placeholder="01XXXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label data-bn="সেবার ধরন নির্বাচন করুন" data-en="Select Service Type">সেবার ধরন নির্বাচন করুন</label>
+                            <select id="appService">
+                                <option>নাগরিকত্ব সনদপত্র</option>
+                                <option>জন্ম নিবন্ধন আবেদন</option>
+                                <option>জাতীয় পরিচয়পত্র সংশোধন</option>
+                                <option>ট্রেড লাইসেন্স নবায়ন</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn" data-bn="আবেদন জমা দিন" data-en="Submit Application">আবেদন জমা দিন</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <aside>
+                <div class="sidebar-card" id="notices">
+                    <h3 class="section-title" data-bn="সাম্প্রতিক নোটিশ" data-en="Recent Notices">সাম্প্রতিক নোটিশ</h3>
+                    <ul class="notice-list">
+                        <li>
+                            <span class="notice-date">২৫ নভেম্বর, ২০২৬</span>
+                            ডিজিটাল নাগরিক সনদ যাচাইকরণ প্রক্রিয়া সহজীকরণ প্রসঙ্গে।
+                        </li>
+                        <li>
+                            <span class="notice-date">২০ নভেম্বর, ২০২৬</span>
+                            অনলাইন ভূমি উন্নয়ন কর পরিশোধের নতুন নির্দেশিকা প্রকাশ।
+                        </li>
+                        <li>
+                            <span class="notice-date">১৫ নভেম্বর, ২০২৬</span>
+                            ই-পাসপোর্ট আবেদনের ক্ষেত্রে জরুরি তথ্য হালনাগাদ বিজ্ঞপ্তি।
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card" id="helpline">
+                    <h3 class="section-title" data-bn="জরুরি হেল্পলাইন" data-en="Emergency Helpline">জরুরি হেল্পলাইন</h3>
+                    <div class="helpline-box">
+                        <div class="helpline-item">
+                            <strong>৩৩৩</strong>
+                            <span>সরকারি তথ্য ও সেবা</span>
+                        </div>
+                        <div class="helpline-item">
+                            <strong>৯৯৯</strong>
+                            <span>জাতীয় জরুরি সেবা</span>
+                        </div>
+                        <div class="helpline-item">
+                            <strong>১০৯</strong>
+                            <span>নারী ও শিশু নির্যাতন প্রতিরোধ</span>
+                        </div>
+                        <div class="helpline-item">
+                            <strong>১৬১২২</strong>
+                            <span>ভূমি সেবা হটলাইন</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© ২০২৬ বাংলাদেশ ডিজিটাল তথ্য বাতায়ন (ডেমো টেমপ্লেট) | সর্বস্বত্ব সংরক্ষিত</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast">আবেদন সফলভাবে গৃহীত হয়েছে! ট্র্যাকিং আইডি: BD-2026-8841</div>
+
+    <script>
+        let currentLang = 'bn';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'bn' ? 'en' : 'bn';
+            document.getElementById('langToggle').innerText = currentLang === 'bn' ? 'English' : 'বাংলা';
+            
+            document.querySelectorAll('[data-bn]').forEach(el => {
+                el.innerText = el.getAttribute('data-' + currentLang);
+            });
+        }
+
+        function filterServices() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        }
+
+        function submitApplication(e) {
+            e.preventDefault();
+            const toast = document.getElementById('toast');
+            toast.className = 'show';
+            setTimeout(() => { toast.className = ''; }, 4000);
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
